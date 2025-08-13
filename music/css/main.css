@@ -1,0 +1,191 @@
+@charset "utf-8";
+@font-face {
+     font-family: 'DungGeunMo';
+     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+/* 공통 */
+body{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom,#6A94FF 19%, #CDE1FF 67%, #FFFFFF 92%);
+}
+.cont{
+    width: 100%;
+    height: 100%;
+    background: url(../img/main_bg.png) no-repeat center/contain;
+    position: relative;
+}
+a:hover{
+    cursor: pointer;
+}
+.prev{
+    width: 40px; height: 40px;
+    background: url(../img/ico_prev.png) no-repeat center/cover;
+}
+.play{
+    width: 30px; height: 30px;
+    background: url(../img/ico_play.png) no-repeat center/cover;
+}
+.next{
+    width: 40px; height: 40px;
+    background: url(../img/ico_next.png) no-repeat center/cover;
+}
+button:hover{
+    scale: 1.2;
+}
+
+/* header area */
+header{
+    background: rgba(255,255,255,80%);
+    width: 100vw;
+    height: 75px;
+}
+header ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 350px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DungGeunMo';
+    font-size: 25px;
+    font-weight: 600;
+}
+
+/* player area */
+main .player .player-screen{
+    width: 220px;
+    height: 300px;
+    background: gray;
+    position: absolute;
+    top: 270px;
+    left: 460px;
+}
+main .player .player-button{
+    position: absolute;
+    bottom: 220px;
+    left: 495px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+/* list area */
+main .list .list-header{
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    position: absolute;
+    right: 423px;
+    top: 197px;
+}
+main .list .list-header li{
+    width: 148px;
+    height: 45px;
+    background: #fff;
+    outline: 3px solid #5476CB;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+    line-height: 45px;
+}
+main .list .list-header li a{
+    width: 100%;
+    display: block;
+}
+main .list .list-header li a:hover{
+    background: #6993fe;
+    color: #fff;
+}
+main .list .list-header li.on a{
+    background: #42578D;
+    color: #fff;
+}
+.rank::-webkit-scrollbar{
+    display: none;
+}
+main .list .rank li{
+    width: 650px;
+    height: 45px;
+    margin-bottom: 8px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #6993fe;
+    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.4),
+    inset 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+main .list .rank li a{
+    width: 100%;
+    display: flex;
+    padding: 5px 30px;
+    align-items: center;
+    font-size: 20px;
+    color: #fff;
+}
+main .list .rank li a:hover{
+    background-color: #42578D;
+    font-weight: 700;
+    border-radius: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+main .list .rank li a p{
+    margin-right: 30px;
+}
+main .list .rank li a figure{
+    width: 35px;
+    height: 35px;
+    margin-right:30px ;
+}
+main .list .rank li a figure img{
+    width: 100%; height: 100%;
+    background: center/contain;
+    border-radius: 8px;
+}
+main .list .rank li a .play{
+    margin-right: 30px;
+}
+main .list .rank li a strong{
+    width: 240px;
+    letter-spacing: -1px;
+}
+main .list .rank li a span{
+    font-size: 16px;
+    letter-spacing: -1px;
+}
+main .list .rank {
+    display: none;
+}
+main .list .rank.on{
+    display: block;
+}
+
+/* 세부페이지 버튼 */
+main .list .goto{
+    display: flex;
+    width: 350px;
+    height: 50px;
+    background: #6993FE;
+    border-radius: 10px;
+    border: 1px solid #000;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    box-shadow: inset 2px 2px 5px 3px rgba(255, 255, 255, 0.25);
+    position: absolute;
+    bottom: 115px;
+    right: 600px;
+}
+main .list .goto p{
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.4);
+}
+main .list .goto i{
+    display: block;
+    width: 30px; height: 30px;
+    background: url(../img/ico_goto.png) no-repeat center/cover;
+}

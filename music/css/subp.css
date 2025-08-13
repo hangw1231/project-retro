@@ -1,0 +1,190 @@
+@charset "utf-8";
+@font-face {
+     font-family: 'DungGeunMo';
+     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+/* 공통 */
+html, body{
+    height: 100%;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to bottom,#6A94FF 19%, #CDE1FF 67%, #FFFFFF 92%) fixed;
+    font-family: 'DungGeunMo';
+}
+section {
+    position: relative;
+}
+button{
+    width: 30px;
+    height: 30px;
+}
+section .btn .up{
+    background: url(../img/ico_up.png) no-repeat center/cover;
+    position: absolute;
+    right: 392px;
+    bottom: 48px;
+}
+section .btn .down{
+    background: url(../img/ico_down.png) no-repeat center/cover;
+    position: absolute;
+    right: 347px;
+    bottom: 48px;
+}
+/* header area */
+header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,80%);
+    height: 65px;
+    z-index: 100;
+}
+header ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 350px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DungGeunMo';
+    font-size: 25px;
+    font-weight: 600;
+}
+
+/* 고정 뷰포트(섹션이 넘어가는 무대) */
+.viewport{
+  position: fixed;
+  top: 75px;    /* 헤더 높이만큼 아래에서 시작 */
+  left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+}
+
+/* 트랙: 섹션들을 세로로 쌓고, Y축 이동 */
+.track{
+  position: absolute;
+  inset: 0;
+  display: block;
+  will-change: transform;
+  transform: translateY(0);
+}
+
+/* 한 화면 = 한 섹션 */
+.viewport .track section{
+  position: relative;
+  width: 100%;
+  height: 100%;   /* 뷰포트 높이 꽉 채움 */
+  display: block;
+}
+
+
+/* 배경 이미지 */
+.sub01 {
+    background: url(../img/sub_bg01.png) no-repeat center/contain;
+}
+
+.sub02 {
+    background: url(../img/sub_bg02.png) no-repeat center/contain;
+}
+
+.sub03 {
+    background: url(../img/sub_bg03.png) no-repeat center/contain;
+}
+
+.sub04 {
+    background: url(../img/sub_bg04.png) no-repeat center/contain;
+}
+
+/* 텍스트 */
+section:not(.sub04) .title{
+    position: absolute;
+    top: 150px;
+    left: 440px;
+    text-align: center;
+}
+.title h3{
+    font-size: 24px;
+    color: #A0E857;
+    margin-bottom: 30px;
+}
+.title h4{
+    font-size: 20px;
+    color: #fff;
+}
+section:not(.sub04) p{
+    color: white;
+    font-size: 16px;
+    line-height: 30px;
+    display: block;
+    width: 450px; height: 150px;
+    position: absolute;
+    top: 150px;
+    right: 400px;
+}
+section:not(.sub04) .info{
+    width: 640px;
+    height: 50px;
+    position: absolute;
+    right: 320px;
+    top: 340px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    border-bottom: 1px solid #000;
+}
+section:not(.sub04) .info li{
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+section:not(.sub04) .info li::after{
+    content: '';
+    width: 1px;
+    height: 50px;
+    display: block;
+    background: #000;
+    position: absolute;
+    top: -16px;
+}
+section:not(.sub04) .info li:first-child::after{
+    display: none;
+}
+/* 동영상 */
+section iframe{
+    position: absolute;
+    bottom: 130px;
+    right: 360px;
+    border-radius: 10px;
+}
+
+/* 마지막 페이지 */
+.sub04 .lie{
+    left: 350px;
+    top: 160px;
+}
+.sub04 p{
+    color: white;
+    font-size: 16px;
+    line-height: 30px;
+    display: block;
+    width: 450px; height: 150px;
+    position: absolute;
+}
+.sub04 #txt01{
+    left: 370px;
+    bottom: 140px;
+}
+.sub04 .nobody{
+    right: 350px;
+    top: 160px;
+}
+.sub04 #txt02{
+    right: 450px;
+    bottom: 140px;
+}
