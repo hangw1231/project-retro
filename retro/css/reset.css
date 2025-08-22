@@ -29,4 +29,3 @@ body{font-family: 'DungGeunMo', "Pretendard Variable", Pretendard, -apple-system
 
 /* 블라인드 텍스트 - 시각장애인들에게 정보를 제공하기 위해 */
 .blind{font-size: 0; line-height: 0; overflow: hidden; height: 0; visibility: hidden;}
-
