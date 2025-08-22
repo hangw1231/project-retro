@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* 
+    press start 2p 폰트 적용을 위해 html에 아래 link 적용 필수
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+*/
+.press-start-2p-regular {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+header{
+    width: 100vw;
+    height: 80px;
+    background: rgba(255,255,255,0.7);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+}
+header ul{
+    width: 63%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    font-family: "Press Start 2P";
+    font-size: 18px;
+    line-height: 80px;
+}
