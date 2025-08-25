@@ -1,6 +1,5 @@
 @charset "utf-8";
 
-/* 공통값(폰트크기/컬러값) */
 :root {
     --h2: 32px;
     --h3: 25px;
@@ -572,4 +571,5 @@ h2 {
     -webkit-user-drag: none;
     user-select: none;
 }
+
 
