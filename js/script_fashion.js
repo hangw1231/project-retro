@@ -1,83 +1,87 @@
 /* mainIntro */
 (function () {
   const speed = 45;           // 글자당 지연(ms)
-  const afterEachP = 300;     // 문장(p) 하나 끝나고 잠깐 쉬는 시간(ms)
-  const afterAll = 2000;      // 모든 타이핑 완료 후 다시 시작 전 대기(ms)
+  const afterEachP = 300;     // p 하나 끝난 뒤 텀(ms)
+  const afterAll = 2000;      // 모두 끝나고 다시 시작 전 대기(ms)
 
-  const targets = [
+  const els = [
     document.querySelector('#mainIntro .bigTitle'),
     document.querySelector('#mainIntro .subText')
   ].filter(Boolean);
 
-  // p 요소를 분석해: 일반 텍스트 / <strong> / <br> 를 '세그먼트'로 쪼갬
+  // 원본 HTML/세그먼트 저장 (강조 태그가 글자로 노출되지 않게 text만 타이핑)
+  const originals = els.map(el => el.innerHTML);
+
   function parseParagraph(pEl) {
     const segs = [];
     pEl.childNodes.forEach((node) => {
       if (node.nodeType === Node.TEXT_NODE) {
         if (node.textContent) segs.push({ type: 'text', bold: false, text: node.textContent });
       } else if (node.nodeType === Node.ELEMENT_NODE) {
-        if (node.tagName === 'STRONG') {
-          segs.push({ type: 'text', bold: true, text: node.textContent });
-        } else if (node.tagName === 'BR') {
-          segs.push({ type: 'br' });
-        } else {
-          // 그 외 태그는 '텍스트만' 타이핑 (마크업 노출 방지)
-          segs.push({ type: 'text', bold: false, text: node.textContent });
-        }
+        if (node.tagName === 'STRONG') segs.push({ type: 'text', bold: true, text: node.textContent });
+        else if (node.tagName === 'BR') segs.push({ type: 'br' });
+        else segs.push({ type: 'text', bold: false, text: node.textContent });
       }
     });
     return segs;
   }
+  const parsed = els.map(el => ({ el, segs: parseParagraph(el) }));
 
-  function delay(ms) {
-    return new Promise(res => setTimeout(res, ms));
+  // === 핵심: 타이핑 전 '최종 높이'를 미리 측정해서 min-height로 고정 ===
+  function measureAndLockHeight(el, finalHTML) {
+    const clone = el.cloneNode(true);
+    clone.style.position = 'absolute';
+    clone.style.visibility = 'hidden';
+    clone.style.pointerEvents = 'none';
+    clone.style.height = 'auto';
+    clone.style.minHeight = '0';
+    clone.innerHTML = finalHTML;               // 최종 내용을 기준으로 실제 높이 측정
+    el.parentNode.appendChild(clone);
+    const h = Math.ceil(clone.getBoundingClientRect().height);
+    clone.remove();
+    el.style.minHeight = h + 'px';             // 이 줄이 레이아웃 시프트를 막아줌
   }
+
+  function reserveHeights() {
+    els.forEach((el, i) => measureAndLockHeight(el, originals[i]));
+  }
+
+  function delay(ms) { return new Promise(res => setTimeout(res, ms)); }
 
   async function typeText(parent, text, isBold) {
     const holder = isBold ? document.createElement('strong') : document.createElement('span');
     parent.appendChild(holder);
-    for (const ch of text) {
-      holder.append(ch);
-      await delay(speed);
-    }
+    for (const ch of text) { holder.append(ch); await delay(speed); }
   }
 
   async function typeParagraph(pEl, segs) {
     pEl.innerHTML = '';
     pEl.style.visibility = 'visible';
     for (const seg of segs) {
-      if (seg.type === 'br') {
-        pEl.appendChild(document.createElement('br'));
-      } else if (seg.type === 'text') {
-        await typeText(pEl, seg.text, seg.bold);
-      }
+      if (seg.type === 'br') pEl.appendChild(document.createElement('br'));
+      else if (seg.type === 'text') await typeText(pEl, seg.text, seg.bold);
     }
   }
-
-  // 원본 문장을 미리 파싱해 보관 (반복 타이핑 시에도 <strong>이 글자로 보이지 않음)
-  const parsed = targets.map(el => ({ el, segs: parseParagraph(el) }));
 
   async function playOnce() {
-    // 시작 전에 모두 숨기고 비워두기 (초기/반복 시 깜빡임 방지)
-    for (const { el } of parsed) {
-      el.style.visibility = 'hidden';
-      el.innerHTML = '';
-    }
-
-    for (const { el, segs } of parsed) {
-      await typeParagraph(el, segs);
-      await delay(afterEachP);
-    }
+    for (const { el } of parsed) { el.style.visibility = 'hidden'; el.innerHTML = ''; }
+    for (const { el, segs } of parsed) { await typeParagraph(el, segs); await delay(afterEachP); }
   }
 
+  // 처음에 자리 예약하고 시작
+  reserveHeights();
+
+  // 반응형: 창 크기 바뀌면 예약 높이 다시 계산
+  let rAF;
+  window.addEventListener('resize', () => {
+    if (rAF) cancelAnimationFrame(rAF);
+    rAF = requestAnimationFrame(() => reserveHeights());
+  });
+
   (async function loop() {
-    while (true) {
-      await playOnce();
-      await delay(afterAll);
-    }
+    while (true) { await playOnce(); await delay(afterAll); }
   })();
 })();
-
 
 /* newtroLook */
 (function () {
