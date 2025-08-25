@@ -10,7 +10,7 @@
 ## 📂 프로젝트 구조
 project-retro/
 ├─ index.html # 메인 페이지
-├─ pages/ # 서브 페이지 (타임라인, 아이콘, 아카이브 등)
+├─ pages/ # 서브 페이지 (PLACE / MEDIA / MUSIC / FASHION)
 ├─ css/ # CSS 파일
 ├─ js/ # JS 파일
 ├─ img/ # 이미지 리소스
