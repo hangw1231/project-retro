@@ -53,10 +53,6 @@ h2 {
     justify-content: space-between;
 }
 
-#mainIntro .contents p {
-    visibility: hidden;
-}
-
 #mainIntro .contents .bigTitle {
     font-family: "Press Start 2P", system-ui;
     font-size: 40px;
@@ -75,6 +71,9 @@ h2 {
 #mainIntro .contents .subText {
     font-size: 20px;
     line-height: 34px;
+    visibility: hidden;
+    margin: 0;
+    overflow: hidden;
 }
 
 #mainIntro .contents .subText strong {
@@ -479,9 +478,11 @@ h2 {
 }
 
 .timeline_card ul::after {
-  content: '';
-  display: block;   /* flex 안이니까 block 대신 flex-item 효과 */
-  flex: 0 0 60px;  /* ← 원하는 오른쪽 여백 */
+    content: '';
+    display: block;
+    /* flex 안이니까 block 대신 flex-item 효과 */
+    flex: 0 0 60px;
+    /* ← 원하는 오른쪽 여백 */
 }
 
 .timeline_card ul li {
@@ -496,15 +497,19 @@ h2 {
 .timeline_card ul li:nth-child(1) {
     background: url(../img/timelineCard_1960.png);
 }
+
 .timeline_card ul li:nth-child(2) {
     background: url(../img/timelineCard_1970.png);
 }
+
 .timeline_card ul li:nth-child(3) {
     background: url(../img/timelineCard_1980.png);
 }
+
 .timeline_card ul li:nth-child(4) {
     background: url(../img/timelineCard_1990.png);
 }
+
 .timeline_card ul li:nth-child(5) {
     background: url(../img/timelineCard_2000.png);
 }
