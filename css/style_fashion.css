@@ -52,6 +52,10 @@ h2 {
     justify-content: space-between;
 }
 
+#mainIntro .contents p {
+    visibility: hidden;
+}
+
 #mainIntro .contents .bigTitle {
     font-family: "Press Start 2P", system-ui;
     font-size: 40px;
