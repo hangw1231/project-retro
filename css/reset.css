@@ -31,15 +31,17 @@ body {font-family: 'DungGeunMo', "Pretendard Variable", Pretendard, -apple-syste
 
 /* 공통값(폰트크기/컬러값) */
 :root {
-    --h2: 32px;
-    --h3: 25px;
-    --h4: 20px;
+    --h1: 32px;
+    --h2: 28px;
+    --h3: 24px;
+    --h4: 22px;
+    --p: 16px;
     --main-color: #6993FE;
     --point-color: #A0E857;
     --font-black: #090909;
     --font-white: #FFFFFF;
     --border-gray: #BBBBBB;
-    --background-gray: #EEEEEE;
     --background: linear-gradient(to bottom, #6A94FF 19%, #CDE1FF 67%, #FFFFFF 92%);
     --button-color: linear-gradient(to bottom, #F1FFED 18%, #8DDD35 99%);
 }
+
