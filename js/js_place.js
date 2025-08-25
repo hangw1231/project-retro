@@ -27,7 +27,7 @@ window.addEventListener("wheel", (e) => {
 })
 
 //cafe
-const images = ["../img/place_mianimg.png", "../img/place_mianimg_2.png", "../img/place_mianimg_3.png"]; // 교체할 이미지들
+const images = ["../img/place_mainimg.png", "../img/place_mainimg_2.png", "../img/place_mainimg_3.png"]; // 교체할 이미지들
 let currentIndex = 0;
 
 const slideImg = document.getElementById("slideImg");
