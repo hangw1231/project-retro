@@ -1,3 +1,84 @@
+/* mainIntro */
+(function () {
+  const speed = 45;           // 글자당 지연(ms)
+  const afterEachP = 300;     // 문장(p) 하나 끝나고 잠깐 쉬는 시간(ms)
+  const afterAll = 2000;      // 모든 타이핑 완료 후 다시 시작 전 대기(ms)
+
+  const targets = [
+    document.querySelector('#mainIntro .bigTitle'),
+    document.querySelector('#mainIntro .subText')
+  ].filter(Boolean);
+
+  // p 요소를 분석해: 일반 텍스트 / <strong> / <br> 를 '세그먼트'로 쪼갬
+  function parseParagraph(pEl) {
+    const segs = [];
+    pEl.childNodes.forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        if (node.textContent) segs.push({ type: 'text', bold: false, text: node.textContent });
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        if (node.tagName === 'STRONG') {
+          segs.push({ type: 'text', bold: true, text: node.textContent });
+        } else if (node.tagName === 'BR') {
+          segs.push({ type: 'br' });
+        } else {
+          // 그 외 태그는 '텍스트만' 타이핑 (마크업 노출 방지)
+          segs.push({ type: 'text', bold: false, text: node.textContent });
+        }
+      }
+    });
+    return segs;
+  }
+
+  function delay(ms) {
+    return new Promise(res => setTimeout(res, ms));
+  }
+
+  async function typeText(parent, text, isBold) {
+    const holder = isBold ? document.createElement('strong') : document.createElement('span');
+    parent.appendChild(holder);
+    for (const ch of text) {
+      holder.append(ch);
+      await delay(speed);
+    }
+  }
+
+  async function typeParagraph(pEl, segs) {
+    pEl.innerHTML = '';
+    pEl.style.visibility = 'visible';
+    for (const seg of segs) {
+      if (seg.type === 'br') {
+        pEl.appendChild(document.createElement('br'));
+      } else if (seg.type === 'text') {
+        await typeText(pEl, seg.text, seg.bold);
+      }
+    }
+  }
+
+  // 원본 문장을 미리 파싱해 보관 (반복 타이핑 시에도 <strong>이 글자로 보이지 않음)
+  const parsed = targets.map(el => ({ el, segs: parseParagraph(el) }));
+
+  async function playOnce() {
+    // 시작 전에 모두 숨기고 비워두기 (초기/반복 시 깜빡임 방지)
+    for (const { el } of parsed) {
+      el.style.visibility = 'hidden';
+      el.innerHTML = '';
+    }
+
+    for (const { el, segs } of parsed) {
+      await typeParagraph(el, segs);
+      await delay(afterEachP);
+    }
+  }
+
+  (async function loop() {
+    while (true) {
+      await playOnce();
+      await delay(afterAll);
+    }
+  })();
+})();
+
+
 /* newtroLook */
 (function () {
     const container = document.querySelector('.swipeArea');
