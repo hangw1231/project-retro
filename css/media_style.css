@@ -9,7 +9,7 @@
 
 /* 공통 */
 body {
-    background: linear-gradient(#6A94FF, #CDE1FF, #FFFFFF);
+    background: linear-gradient(to bottom, #6A94FF 19%, #CDE1FF 67%, #FFFFFF 92%);
     background-attachment: fixed;
 }
 
@@ -476,3 +476,4 @@ body {
   transform: translateY(0);
   opacity: 1;
 }
+
