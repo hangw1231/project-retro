@@ -8,6 +8,7 @@
 }
 
 /* 공통 */
+*{box-sizing : border-box;}
 html {
     background: #FDFDFD;
 }
@@ -303,3 +304,4 @@ footer {
     display: none;
 
 }
+
