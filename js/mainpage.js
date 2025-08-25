@@ -13,7 +13,7 @@ $(function() {
     $(video).on('ended', show);
 
     setTimeout(()=>{
-        if($intro.is('visible')){
+        if($intro.is(':visible')){
             show()
         }
     }, 3000);
@@ -48,4 +48,5 @@ $(function() {
             createStars()
         }
     }, 500) */
+
 })
