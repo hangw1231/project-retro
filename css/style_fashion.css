@@ -5,6 +5,7 @@
     --h2: 32px;
     --h3: 25px;
     --h4: 20px;
+    --background-gray: #EEEEEE;
 }
 
 html {
@@ -571,3 +572,4 @@ h2 {
     -webkit-user-drag: none;
     user-select: none;
 }
+
