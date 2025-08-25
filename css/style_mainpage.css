@@ -46,7 +46,6 @@ body::-webkit-scrollbar {
     background: none;
     text-align: center;
     position: relative;
-    display: none;
 /*     overflow: hidden; */
 }
 .background{
@@ -243,3 +242,4 @@ footer .f_right .members .link img {
     margin-right: 7px;
 
 }
+
