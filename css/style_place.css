@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+:root {
+  --background: linear-gradient(to bottom, #6A94FF 19%, #CDE1FF 67%, #FFFFFF 92%);
+  --point-color: #A0E857;
+}
 * {box-sizing: border-box;}
 html {
   scroll-behavior: smooth;
@@ -407,4 +411,5 @@ section {
 .music .play2,
 .music .pause2 {
     top: 34%;
+
 }
