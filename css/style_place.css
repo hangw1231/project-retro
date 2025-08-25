@@ -9,6 +9,7 @@ html {
   scroll-behavior: smooth;
 }
 body {overflow: hidden;}
+#footer {height: 300px;}
 section {
     background: var(--background);
     background-attachment: fixed;
@@ -413,3 +414,4 @@ section {
     top: 34%;
 
 }
+
