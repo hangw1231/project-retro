@@ -3,7 +3,7 @@
 **Project Retro**는 레트로 & 뉴트로 패션을 주제로 한 웹사이트입니다.  
 시대별 패션 흐름과 아이콘을 아카이브하고, 현대적으로 재해석한 스타일을 소개합니다.  
 
-👉 **사이트 보기:** [https://username.github.io/project-retro/](https://username.github.io/project-retro/)
+👉 **사이트 보기:** [https://hangw1231.github.io/project-retro/](https://hangw1231.github.io/project-retro/)
 
 ---
 
