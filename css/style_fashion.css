@@ -22,7 +22,7 @@ html {
 /* 공통 */
 h2 {
     margin-bottom: 25px;
-    font-family: "Press Start 2P", 'DungGeunMo';
+    font-family: "Press Start 2P", system-ui;
     font-size: var(--h2);
     line-height: 46px;
     text-align: center;
@@ -102,7 +102,7 @@ h2 {
 
 /* newtroLook */
 #newtroLook {
-    background: url(../img/background_sparkling01.png) no-repeat center/cover;
+    background: url(../img/fs_background_sparkling01.png) no-repeat center/cover;
 }
 
 #newtroLook .contents {
@@ -393,7 +393,7 @@ h2 {
 #timeline {
     padding: 130px 0 80px;
     box-sizing: border-box;
-    background: url(../img/background_sparkling02.png) no-repeat top -80px center/cover;
+    background: url(../img/fs_background_sparkling02.png) no-repeat top -80px center/cover;
 }
 
 .timelineSlide {
@@ -576,4 +576,5 @@ h2 {
     max-width: 316px;
     -webkit-user-drag: none;
     user-select: none;
+
 }
