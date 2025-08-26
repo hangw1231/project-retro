@@ -1,86 +1,86 @@
 /* mainIntro */
 (function () {
-  const speed = 45;           // 글자당 지연(ms)
-  const afterEachP = 300;     // p 하나 끝난 뒤 텀(ms)
-  const afterAll = 2000;      // 모두 끝나고 다시 시작 전 대기(ms)
+    const speed = 45;           // 글자당 지연(ms)
+    const afterEachP = 300;     // p 하나 끝난 뒤 텀(ms)
+    const afterAll = 2000;      // 모두 끝나고 다시 시작 전 대기(ms)
 
-  const els = [
-    document.querySelector('#mainIntro .bigTitle'),
-    document.querySelector('#mainIntro .subText')
-  ].filter(Boolean);
+    const els = [
+        document.querySelector('#mainIntro .bigTitle'),
+        document.querySelector('#mainIntro .subText')
+    ].filter(Boolean);
 
-  // 원본 HTML/세그먼트 저장 (강조 태그가 글자로 노출되지 않게 text만 타이핑)
-  const originals = els.map(el => el.innerHTML);
+    // 원본 HTML/세그먼트 저장 (강조 태그가 글자로 노출되지 않게 text만 타이핑)
+    const originals = els.map(el => el.innerHTML);
 
-  function parseParagraph(pEl) {
-    const segs = [];
-    pEl.childNodes.forEach((node) => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        if (node.textContent) segs.push({ type: 'text', bold: false, text: node.textContent });
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        if (node.tagName === 'STRONG') segs.push({ type: 'text', bold: true, text: node.textContent });
-        else if (node.tagName === 'BR') segs.push({ type: 'br' });
-        else segs.push({ type: 'text', bold: false, text: node.textContent });
-      }
-    });
-    return segs;
-  }
-  const parsed = els.map(el => ({ el, segs: parseParagraph(el) }));
-
-  // === 핵심: 타이핑 전 '최종 높이'를 미리 측정해서 min-height로 고정 ===
-  function measureAndLockHeight(el, finalHTML) {
-    const clone = el.cloneNode(true);
-    clone.style.position = 'absolute';
-    clone.style.visibility = 'hidden';
-    clone.style.pointerEvents = 'none';
-    clone.style.height = 'auto';
-    clone.style.minHeight = '0';
-    clone.innerHTML = finalHTML;               // 최종 내용을 기준으로 실제 높이 측정
-    el.parentNode.appendChild(clone);
-    const h = Math.ceil(clone.getBoundingClientRect().height);
-    clone.remove();
-    el.style.minHeight = h + 'px';             // 이 줄이 레이아웃 시프트를 막아줌
-  }
-
-  function reserveHeights() {
-    els.forEach((el, i) => measureAndLockHeight(el, originals[i]));
-  }
-
-  function delay(ms) { return new Promise(res => setTimeout(res, ms)); }
-
-  async function typeText(parent, text, isBold) {
-    const holder = isBold ? document.createElement('strong') : document.createElement('span');
-    parent.appendChild(holder);
-    for (const ch of text) { holder.append(ch); await delay(speed); }
-  }
-
-  async function typeParagraph(pEl, segs) {
-    pEl.innerHTML = '';
-    pEl.style.visibility = 'visible';
-    for (const seg of segs) {
-      if (seg.type === 'br') pEl.appendChild(document.createElement('br'));
-      else if (seg.type === 'text') await typeText(pEl, seg.text, seg.bold);
+    function parseParagraph(pEl) {
+        const segs = [];
+        pEl.childNodes.forEach((node) => {
+            if (node.nodeType === Node.TEXT_NODE) {
+                if (node.textContent) segs.push({ type: 'text', bold: false, text: node.textContent });
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                if (node.tagName === 'STRONG') segs.push({ type: 'text', bold: true, text: node.textContent });
+                else if (node.tagName === 'BR') segs.push({ type: 'br' });
+                else segs.push({ type: 'text', bold: false, text: node.textContent });
+            }
+        });
+        return segs;
     }
-  }
+    const parsed = els.map(el => ({ el, segs: parseParagraph(el) }));
 
-  async function playOnce() {
-    for (const { el } of parsed) { el.style.visibility = 'hidden'; el.innerHTML = ''; }
-    for (const { el, segs } of parsed) { await typeParagraph(el, segs); await delay(afterEachP); }
-  }
+    // === 핵심: 타이핑 전 '최종 높이'를 미리 측정해서 min-height로 고정 ===
+    function measureAndLockHeight(el, finalHTML) {
+        const clone = el.cloneNode(true);
+        clone.style.position = 'absolute';
+        clone.style.visibility = 'hidden';
+        clone.style.pointerEvents = 'none';
+        clone.style.height = 'auto';
+        clone.style.minHeight = '0';
+        clone.innerHTML = finalHTML;               // 최종 내용을 기준으로 실제 높이 측정
+        el.parentNode.appendChild(clone);
+        const h = Math.ceil(clone.getBoundingClientRect().height);
+        clone.remove();
+        el.style.minHeight = h + 'px';             // 이 줄이 레이아웃 시프트를 막아줌
+    }
 
-  // 처음에 자리 예약하고 시작
-  reserveHeights();
+    function reserveHeights() {
+        els.forEach((el, i) => measureAndLockHeight(el, originals[i]));
+    }
 
-  // 반응형: 창 크기 바뀌면 예약 높이 다시 계산
-  let rAF;
-  window.addEventListener('resize', () => {
-    if (rAF) cancelAnimationFrame(rAF);
-    rAF = requestAnimationFrame(() => reserveHeights());
-  });
+    function delay(ms) { return new Promise(res => setTimeout(res, ms)); }
 
-  (async function loop() {
-    while (true) { await playOnce(); await delay(afterAll); }
-  })();
+    async function typeText(parent, text, isBold) {
+        const holder = isBold ? document.createElement('strong') : document.createElement('span');
+        parent.appendChild(holder);
+        for (const ch of text) { holder.append(ch); await delay(speed); }
+    }
+
+    async function typeParagraph(pEl, segs) {
+        pEl.innerHTML = '';
+        pEl.style.visibility = 'visible';
+        for (const seg of segs) {
+            if (seg.type === 'br') pEl.appendChild(document.createElement('br'));
+            else if (seg.type === 'text') await typeText(pEl, seg.text, seg.bold);
+        }
+    }
+
+    async function playOnce() {
+        for (const { el } of parsed) { el.style.visibility = 'hidden'; el.innerHTML = ''; }
+        for (const { el, segs } of parsed) { await typeParagraph(el, segs); await delay(afterEachP); }
+    }
+
+    // 처음에 자리 예약하고 시작
+    reserveHeights();
+
+    // 반응형: 창 크기 바뀌면 예약 높이 다시 계산
+    let rAF;
+    window.addEventListener('resize', () => {
+        if (rAF) cancelAnimationFrame(rAF);
+        rAF = requestAnimationFrame(() => reserveHeights());
+    });
+
+    (async function loop() {
+        while (true) { await playOnce(); await delay(afterAll); }
+    })();
 })();
 
 /* newtroLook */
@@ -474,35 +474,45 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-const track = document.querySelector('.timeline_track');
-const fill = document.getElementById('trackFill');
-const thumb = document.getElementById('trackThumb');
-const cards = document.querySelectorAll('#cardArea li');
+const container = document.getElementById('timelineContainer');
+const track = container?.querySelector('.timeline_track');
+const fill = container?.querySelector('#trackFill');
+const cardList = container?.querySelector('.timeline_card > ul');
+const cards = cardList ? cardList.querySelectorAll(':scope > li') : [];
 
-function setProgressByElement(el) {
-    const trackRect = track.getBoundingClientRect();
-    const elRect = el.getBoundingClientRect();
+if (track && fill && cardList && cards.length) {
+    function setProgressByElement(el) {
+        const trackRect = track.getBoundingClientRect();
+        const elRect = el.getBoundingClientRect();
 
-    // li의 중앙 X 좌표
-    const elCenterX = elRect.left + elRect.width / 2;
+        // li의 중앙 X 좌표
+        const elCenterX = elRect.left + elRect.width / 2;
 
-    // 트랙 내 상대 위치(0~1)
-    let percent = (elCenterX - trackRect.left) / trackRect.width;
-    percent = Math.max(0, Math.min(1, percent));
+        // 트랙 내 상대 위치(0~1)
+        let percent = (elCenterX - trackRect.left) / trackRect.width;
+        percent = Math.max(0, Math.min(1, percent));
 
-    // 반영
-    const p = (percent * 100).toFixed(3) + '%';
-    fill.style.width = p;
-    thumb.style.left = p;
+        // 반영
+        const p = (percent * 100).toFixed(3) + '%';
+        fill.style.width = p;
+    }
+
+    // li hover 시 트랙 진행도 갱신
+    cards.forEach(li => {
+        li.addEventListener('mouseenter', () => setProgressByElement(li));
+    });
+
+    // 카드 영역에서 마우스가 빠지면 0%로 복귀 (원치 않으면 이 블록 삭제)
+    cardList.addEventListener('mouseleave', () => {
+        fill.style.width = '0%';
+    });
+
+    // 창 크기 변경 시, 현재 hover 중인 카드가 있다면 다시 계산(선택 사항)
+    window.addEventListener('resize', () => {
+        const hovered = Array.from(cards).find(li => li.matches(':hover'));
+        if (hovered) setProgressByElement(hovered);
+    });
+} else {
+    // 필수 요소가 없을 때 콘솔 경고 (개발 편의용)
+    console.warn('[timeline] 필요한 요소를 찾지 못했습니다.', { track, fill, cardList, cardsLen: cards?.length || 0 });
 }
-
-// li hover 시 업데이트
-cards.forEach(li => {
-    li.addEventListener('mouseenter', () => setProgressByElement(li));
-});
-
-// 카드 영역에서 마우스 빠지면 0으로 복귀(원치 않으면 제거)
-document.getElementById('cardArea').addEventListener('mouseleave', () => {
-    fill.style.width = '0%';
-    thumb.style.left = '0%';
-});
