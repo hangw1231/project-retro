@@ -180,7 +180,7 @@ $(function(){
         $bar = $('#bar'),
 
         $btnPrev = $('.player-button .prev'),
-        $btnPlay = $('.play'),
+        $btnPlay = $('.nowplay'),
         $btnNext = $('.player-button .next')
 
   //위젯인스턴스??
@@ -367,6 +367,7 @@ $(function(){
         state.currentIndex = 0
     }
   })();
+
 
 
 })
