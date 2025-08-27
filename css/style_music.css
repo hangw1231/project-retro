@@ -60,6 +60,12 @@ a:hover {
     background: url(../img/icon/ico_play.png) no-repeat center/cover;
     margin-left: 5px;
 }
+.nowplay.playing{
+    width: 30px;
+    height:30px;
+    background: url(../img/icon/ico_pause.png) no-repeat center/cover;
+    margin-left:5px;
+}
 
 .next {
     width: 40px;
@@ -304,4 +310,5 @@ footer {
     display: none;
 
 }
+
 
