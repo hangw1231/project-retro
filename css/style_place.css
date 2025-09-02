@@ -6,8 +6,25 @@ html {
 }
 body {
     overflow: hidden;}
+#starCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  image-rendering: pixelated;
+  z-index: 0; /* 뒤 */
+}
+section, .card_box, .inner {
+  position: relative;
+  z-index: 1;                /* 콘텐츠는 canvas 위 */
+}
 section {
-    background: var(--background);
+  background: transparent; /* 중요 */
+}
+section {
+    /* background: var(--background); */
     background-attachment: fixed;
     width: 100vw;
     height: 100vh;
@@ -73,7 +90,7 @@ section {
     box-shadow: inset 2px 2px 0 #ffff,
     2px 2px 0 #6a94ff;
     font-family: 'Press Start 2P';
-    font-size: 15px;
+    font-size: 14px;
     color: #fff;
     -webkit-text-stroke: 1px #4877EF;
     text-shadow: 2px 2px 0 #4877EF;
@@ -82,6 +99,10 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;    
+}
+.view:hover {
+  box-shadow: 0 0 5px #ffff, 0 0 10px #ffff, 0 0 15px #ffff;
+  transform: scale(1.05);
 }
 .right_cont .txt {margin-bottom: 25px;}
 .txt_name {
@@ -142,13 +163,14 @@ section {
     top: 5%;
     right: -10%;
 }
-#main .main_text p {
+#main .main_text .web {
     font-size: 16px;
     font-family: 'Press Start 2P';
     color: #fff;
     text-align: center;
     text-shadow: 1px 1px 0 rgb(72,119,239);
 }
+#main .main_text .mobile {display: none;}
 #main .main_contents {
     width: 1200px;
     height: 638px;
@@ -159,6 +181,20 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 30px;
+}
+#main .main_contents .tap {
+    font-size: 20px;
+    color: #4877EF;
+}
+.tap {
+  animation: blink-animation 1s steps(2, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }
 #main .main_contents .inner_cont {
     display: flex;
@@ -240,6 +276,10 @@ section {
     position: absolute;
     top: -10%;
     right: -40%;
+    transition: transform 0.3s ease;
+}
+.left_cont:hover::before {
+    transform: translateY(-5px) rotate(-2deg);
 }
 .left_cont .left {
     position: absolute;
@@ -270,12 +310,15 @@ section {
     position: absolute;
     bottom: -10%;
     left: -48%;
+    transition: transform 0.3s ease;
+}
+.right_cont:hover::before {
+    transform: translateY(-5px) rotate(-2deg);
 }
 .right_cont > a {
   position: absolute;
   top: -3%;
   right: 0;      /* 세로 가운데 */
-
 }
 .right_cont .text_box {
     width: 380px;
@@ -381,8 +424,8 @@ section {
 .lp_card .txt {margin-bottom: 10px;}
 .lp_card .txt .txt_name {
     color: #fff;
-    -webkit-text-stroke: 0.5px var(--point-color);
-    text-shadow: 3px 3px 2px var(--point-color);
+    -webkit-text-stroke: 0.5px #8DDD35;
+    text-shadow: 3px 3px 2px #8DDD35;
 }
 .lp_card .lp_contents2 .music img {
     margin-top: -20px;
@@ -393,28 +436,57 @@ section {
 }
 .music .pause {
     position: absolute;
-    top: 40%;
-    left: 32%;
+    bottom: 10%;
+    left: 35%;
     width: 40px;
     height: 40px;
     background: url(../img/icon/place_ico_pause.png) no-repeat center;
+    transition: opacity 0.5s ease;
+}
+.music .pause:hover {
+    opacity: 0.7;
 }
 .music .play {
     position: absolute;
-    top: 40%;
-    left: 52%;
+    bottom: 10%;
+    left: 51%;
     width: 40px;
     height: 40px;
     background: url(../img/icon/place_ico_play.png) no-repeat center;
+    transition: opacity 0.5s ease;
+}
+.music .play:hover {
+    opacity: 0.7;
 }
 .music .play2,
 .music .pause2 {
-    top: 34%;
+    bottom: 17%;
 }
+.title {
+    position: absolute;
+    color: #fff;
+    font-size: 22px;
+    display: none;
+}
+.title.show {
+  display: block;
+  animation: blinkIn 0.3s steps(2, start) 3,
+             glow 1.5s infinite alternate;
+}
+@keyframes blinkIn {
+  0%, 50%, 100% { opacity: 0; }
+  25%, 75% { opacity: 1; }
+}
+@keyframes glow {
+  from { text-shadow: 0 0 2px #fff, 0 0 5px #fff; }
+  to   { text-shadow: 0 0 10px #fff, 0 0 20px #fff; }
+}
+.title1 {top: 5%; left: 5%;}
+.title2 {top: -2%; left: 15%;}
+.title3 {top: 5%; left: 9%;}
 
 /* footer */
 #footer {
     padding: 0px 100px;
     height: 300px;
-
 }
