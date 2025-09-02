@@ -256,6 +256,11 @@ section {
     justify-content: center;
     align-items: center;
 }
+.inner_cont li a:hover {
+  box-shadow: 0 0 5px #ffff, 0 0 10px #ffff, 0 0 15px #ffff;
+  transform: scale(1.05);
+  border: 1px #fff;
+}
 
 /* cafe */
 #cafe .box_header p {
