@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/style_fashion.css">
+    <link rel="stylesheet" href="../css/style_fashion_responsive.css" media="screen and (max-width: 900px)">
     <script src="../js/script_fashion.js" defer></script>
 </head>
 
@@ -16,21 +17,19 @@
     <div id="wrap">
         <header>
             <ul>
-                <li><a href="./place.html">PLACE</a></li>
-                <li><a href="./media.html">MEDIA</a></li>
-                <li><a href="./music.html">MUSIC</a></li>
+                <li><a href="./pages/place.html">PLACE</a></li>
+                <li><a href="./pages/media.html">MEDIA</a></li>
+                <li><a href="./pages/music.html">MUSIC</a></li>
                 <li><a href="./fashion.html">FASHION</a></li>
             </ul>
         </header>
+        <div class="audioButtonArea">
+            <audio id="bgAudio" src="../music/pixel-dreams-259187.mp3" autoplay loop></audio>
+            <button class="bgMusic"><img src="../img/audio_button.png" alt="배경음악 켜기"></button>
+        </div>
         <section id="mainIntro">
-            <!-- <video src=""></video> -->
+            <video src="../vid/fs_introVideo.mp4" autoplay loop muted></video>
             <div class="contents">
-                <p class="bigTitle"><strong>RETRO</strong> is back!</p>
-                <p class="subText">
-                    요즘 다시 뜨는 레트로<br>
-                    <strong>Y2K</strong>부터 <strong>Vintage</strong>까지<br>
-                    당신이 찾는 패션 스타일 가이드를 한눈에!
-                </p>
                 <div class="btnArea">
                     <a class="btn findStyle" href="#findStyle">내 스타일 찾기</a></button>
                     <a class="btn newtroLook" href="#newtroLook">요즘 레트로룩 보기</a></button>
@@ -374,6 +373,4 @@
     </div>
 </body>
 
-
 </html>
-
