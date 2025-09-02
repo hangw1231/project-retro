@@ -98,7 +98,7 @@ body::-webkit-scrollbar {
     color: white;
     font-family: 'DungGeunMo';/* 그림자 추가 필요 */
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25), 2px 2px 0 rgba(0, 0, 0, 1);
-    margin-top:  3%;
+    margin-top:  2%;
      letter-spacing: 2px;
 }
 
@@ -244,5 +244,6 @@ footer .f_right .members .link img {
     margin-right: 7px;
 
 }
+
 
 
