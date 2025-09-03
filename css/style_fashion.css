@@ -186,7 +186,6 @@ h2 {
     text-shadow: 2px 2px var(--font-white)
 }
 
-/* 높이 변주(원하면 각 li에 style="--y:값"으로 개별 제어해도 됨) */
 .swipeArea li:nth-child(odd) {
     --y: -40px;
 }
@@ -204,8 +203,6 @@ h2 {
     to {
         transform: translateX(var(--toX, -50%));
     }
-
-    /* JS가 픽셀값으로 세팅 */
 }
 
 /* findStyle */
@@ -404,7 +401,6 @@ h2 {
     touch-action: pan-y;
     overflow-x: hidden;
     white-space: nowrap;
-    cursor: grab;
     user-select: none;
     padding: 0 100px;
     box-sizing: border-box;
@@ -551,16 +547,22 @@ h2 {
 }
 
 .timeline_card .card_slider button {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border: 1px solid var(--border-gray);
     border-radius: 3px;
     background: var(--font-white);
     box-shadow: inset 1px 1px 2px 0.5px rgba(255, 255, 255, 0.7),
         inset -1px -1px 2px 0.5px rgba(0, 0, 0, 0.2);
-    color: var(--font-black);
-    font-size: 11px;
+    color: var(--border-gray);
+    font-size: 14px;
     text-align: center;
+    transition: all 0.2s;
+}
+
+.timeline_card .card_slider button:hover {
+    background: var(--point-color);
+    color: var(--font-white);
 }
 
 .timeline_card .card_slider .card_nav_prev {
