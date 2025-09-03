@@ -64,7 +64,7 @@ a:hover {
     width: 30px;
     height:30px;
     background: url(../img/icon/ico_pause.png) no-repeat center/cover;
-    margin-left:5px;
+    margin-left:3px;
 }
 
 .next {
@@ -310,5 +310,6 @@ footer {
     display: none;
 
 }
+
 
 
