@@ -245,21 +245,52 @@ body {
 }
 
 #videoPic .innerBox {
+    height: 760px;
     position: relative;
+    background: url(../img/bg_video.png) no-repeat center/cover;
 }
 
 #videoPic .innerBox h2 {
     position: absolute;
-    top: 12.3%;
-    left: 4%;
+    top: 3%;
+    left: 5%;
     font-size: 26px;
     color: #FFFFFF;
     font-family: 'Press Start 2P', cursive;
 }
-
-#videoPic .innerBox img {
-    margin-top: 90px;
+#videoPic .innerBox h3 {
+    position: absolute;
+    top: 91%;
+    left: 16%;
+    font-size: 16px;
+    font-weight: 400;
+    color: #A0E857;
+    font-family: 'DungGeunMo', sans-serif;
 }
+#videoPic .innerBox video{
+    position: absolute;
+    top: 20.7%; left: 1%;
+    width: 98%;
+    height: 64.3%;
+}
+#videoPic .innerBox .btn {
+    position: absolute;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+  #videoPic .innerBox .playBtn {
+    top: 88.5%;
+    left: 4.7%;
+    width: 55px;
+    height: 50px;
+  }
+  #videoPic .innerBox .pauseBtn {
+    top: 92.5%;
+    left: 11.3%;
+    width: 28px;
+    height: 32px;
+  }
 
 #videoPic .pickBtn {
     width: 100%;
@@ -269,6 +300,8 @@ body {
     align-items: center;
     justify-content: center;
     gap: 50px;
+    position: absolute;
+    left: 0; bottom: -10%;
 }
 
 #videoPic .pickBtn .videoBtn {

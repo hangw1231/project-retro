@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro.kr - Media</title>
+    <title>Retro.kr</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <link rel="icon" sizes="24x24" href="img/favicon_star.png" type="image/png">
@@ -141,8 +141,11 @@
     <!-- video -->
     <section id="videoPic">
         <div class="innerBox">
-            <img src="../img/bg_video.png" alt="">
             <h2>2.EDITOR'S PICK</h2>
+            <h3>* 초록 버튼을 눌러 영상을 재생! or 멈춤! *</h3>
+            <video id="mVideo" src="../vid/movie_pick.mp4"></video>
+            <button class="btn playBtn" onclick="playVideo()"></button>
+            <button class="btn pauseBtn" onclick="pauseVideo()"></button>
             <div class="pickBtn">
                 <a href="https://www.tving.com/contents/M000365845" target="_blank" class="videoBtn">...ing</a>
                 <a href="https://www.tving.com/contents/M000369417" target="_blank" class="videoBtn" >늑대의 유혹</a>
@@ -232,35 +235,6 @@
         </div>
     </section>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <!-- Initialize Swiper -->
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            pagination: {
-                el: ".swiper-pagination",
-            },
-        });
-    </script>
-
-    <script>
-        const dramaBoxes = document.querySelectorAll('#dramaArea .box01, #dramaArea .box2, #dramaArea .box03');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                } else {
-                    entry.target.classList.remove('show');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        dramaBoxes.forEach(box => observer.observe(box));
-    </script>
-
-
 <footer>
             <div class="f_left">
                 <p class="f_logo">Retro.kr</p>
@@ -298,10 +272,45 @@
                 </ul>
             </div>
         </footer>
+
+          <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            pagination: {
+                el: ".swiper-pagination",
+            },
+        });
+    </script>
+
+    <script>
+        const dramaBoxes = document.querySelectorAll('#dramaArea .box01, #dramaArea .box2, #dramaArea .box03');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        dramaBoxes.forEach(box => observer.observe(box));
+    </script>
+
+    <script>
+        const video = document.getElementById('mVideo');
+        
+          function playVideo() {
+            video.play();
+        }
+        function pauseVideo() {
+            video.pause();
+        }
+    </script>
 </body>
 
-
 </html>
-
-
-
