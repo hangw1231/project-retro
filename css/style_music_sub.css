@@ -152,6 +152,12 @@ section div:not(.sub04) .info li::after{
 section div:not(.sub04) .info li:first-child::after{
     display: none;
 }
+.sub02 .title h3{
+     line-height : 1.8
+}
+.track section .sub03 .title{
+     left : 13%
+}
 /* 동영상 */
 section iframe{
     position: absolute;
@@ -216,5 +222,6 @@ footer .f_right .members .name {
 footer .f_right .members {
     padding-left: 40px;
 } */
+
 
 
