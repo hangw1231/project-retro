@@ -88,9 +88,9 @@ body::-webkit-scrollbar {
     font-size: 120px;
     font-family: "Press Start 2P";
     text-shadow: 5px 5px 0 #000000;
-    -webkit-text-stroke: 1px #000000;/* 텍스트 stroke */
+    -webkit-text-stroke: 2px #000000;/* 텍스트 stroke */
     padding-top: 12vh;
-     letter-spacing: -11px;
+    letter-spacing: -11px;
 }
 .txt{
     font-size: 25px;
@@ -99,7 +99,7 @@ body::-webkit-scrollbar {
     font-family: 'DungGeunMo';/* 그림자 추가 필요 */
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25), 2px 2px 0 rgba(0, 0, 0, 1);
     margin-top:  2%;
-     letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 
