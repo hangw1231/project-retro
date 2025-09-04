@@ -147,7 +147,7 @@ body::-webkit-scrollbar {
 }
 /* 버튼 */
 ul li a button{
-    width: 75%; height: 5vh;
+    padding: 12px 32px;
     background: linear-gradient(to bottom, #f1ffed 18%, #8ddd35 99%);
     box-shadow: inset 0 0 0 1px #000802, 2px 2px 2px 0 #000;
     border-radius: 40px;
@@ -159,7 +159,7 @@ ul li a button{
 }
 
 ul .fashion a button {
-    font-size: 21px;
+    padding: 12px 17px;
 }
 
 /* li가 떠있는듯한 느낌의 애니메이션 */
