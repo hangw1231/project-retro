@@ -81,7 +81,7 @@ $(function () {
     // 위치/크기 등 기존 .rank 스타일 유지하려면 클래스만 'rank' 유지하면 됨
     $ul.css({
       width: '49%',
-      height: '55%',
+      height: '54%',
       position: 'absolute',
       top: '27%',
       right: '13%',
@@ -364,3 +364,4 @@ $(function () {
     }
   })();
 })
+
