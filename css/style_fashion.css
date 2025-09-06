@@ -406,10 +406,6 @@ h2 {
     box-sizing: border-box;
 }
 
-.timelineSlide.active {
-    cursor: grabbing;
-}
-
 .timelineSlide .timeline_years {
     margin-left: 130px;
     display: flex;
@@ -582,4 +578,5 @@ h2 {
     max-width: 316px;
     -webkit-user-drag: none;
     user-select: none;
+
 }
